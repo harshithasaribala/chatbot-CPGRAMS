@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CPGRAMS Chatbot</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  .chat-container {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  .chat-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    font-weight: bold;
+  }
+  .chat-body {
+    padding: 15px;
+    height: 300px;
+    overflow-y: auto;
+  }
+  .chat-input {
+    width: calc(100% - 30px);
+    padding: 10px 15px;
+    border: none;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    outline: none;
+  }
+  .chat-button {
+    width: 100px;
+    height: 50px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .message-container {
+    margin-bottom: 15px;
+  }
+  .user-message {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 70%;
+    float: left;
+    clear: both;
+    margin-bottom: 5px;
+  }
+  .bot-message {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 70%;
+    float: right;
+    clear: both;
+    margin-bottom: 5px;
+  }
+</style>
+</head>
+<body>
+<div class="chat-container">
+  <div class="chat-header">CPGRAMS Chatbot</div>
+  <div class="chat-body" id="chat-body">
+    <div class="bot-message">Welcome! How can I assist you today?</div>
+  </div>
+  <input type="text" id="user-input" class="chat-input" placeholder="Type your message...">
+  <button onclick="sendMessage()" class="chat-button">Send</button>
+</div>
+
+<script>
+  function sendMessage() {
+    var userInput = document.getElementById("user-input").value;
+    if (userInput.trim() === "") return;
+    
+    addUserMessage(userInput);
+    // Process user input and generate bot response
+    var botResponse = generateBotResponse(userInput);
+    addBotMessage(botResponse);
+    
+    // Clear input field
+    document.getElementById("user-input").value = "";
+  }
+  
+  function addUserMessage(message) {
+    var chatBody = document.getElementById("chat-body");
+    var messageContainer = document.createElement("div");
+    messageContainer.className = "message-container";
+    var userMessage = document.createElement("div");
+    userMessage.className = "user-message";
+    userMessage.innerText = message;
+    messageContainer.appendChild(userMessage);
+    chatBody.appendChild(messageContainer);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+  
+  function addBotMessage(message) {
+    var chatBody = document.getElementById("chat-body");
+    var messageContainer = document.createElement("div");
+    messageContainer.className = "message-container";
+    var botMessage = document.createElement("div");
+    botMessage.className = "bot-message";
+    botMessage.innerText = message;
+    messageContainer.appendChild(botMessage);
+    chatBody.appendChild(messageContainer);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+  
+  function generateBotResponse(userInput) {
+    // This is a simple example, you can implement more sophisticated logic here
+    var botResponse = "";
+    userInput = userInput.toLowerCase().trim();
+    if (userInput.includes("file a grievance","file a compliant","grievance","complaint","fill the form","grievance application","website link")) {
+      botResponse = "You can file a grievance on the CPGRAMS portal at https://pgportal.gov.in. Please provide all necessary details accurately.";} 
+    else if (userInput.includes("eligibility criteria for filing a grievance","what is eligibility criteria for filing a grievance")) {
+      botResponse = "Eligibility criteria vary, typically requiring direct impact from actions of government bodies or authorities";}
+    else if (userInput.includes("documents are necessary for filing a grievance","what documents are necessary for filing a grievance")) {
+      botResponse = "Required documents may include identification, relevant supporting documents, and any specified by the grievance system.";}
+    else if (userInput.includes("What categories of grievances can individuals file","categories of grievances")) {
+      botResponse = "Grievance categories range from administrative delays to service, policy, corruption, and employment issues.";}
+    else if (userInput.includes("How can individuals expedite the grievance submission process","submission process")) {
+      botResponse = "Ensure accurate information submission and adherence to platform guidelines for efficient processing.";}
+    else if (userInput.includes("Where can individuals seek assistance for complex grievance issues","issues in filling grievance")) {
+      botResponse = "Seek guidance from dedicated support channels provided by the grievance platform or relevant authorities.";}
+    else if (userInput.includes("how can i contact portal","contact info","phone numbers")) {
+      botResponse = "Director of Public Grievances, The Department of Administrative Reforms and Public Grievances - Parthasarthy Bhaskar -Director (PG)- 2336185";}
+     else {
+      botResponse = "I'm sorry, I couldn't understand that. Can you please rephrase your query?";
+    }
+    return botResponse;
+  }
+</script>
+</body>
+</html>
